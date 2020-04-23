@@ -1,0 +1,13 @@
+.grid {
+  margin-top: 2em;
+  // layout
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax($width, 1fr));
+  grid-row-gap: 2em;
+  grid-column-gap: 1em;
+  justify-items: center;
+
+  @include for-size('desktop-up') {
+    justify-items: flex-start;
+  }
+}

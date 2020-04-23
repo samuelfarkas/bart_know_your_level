@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bart Fotogaléria</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<div class="blurry-bg">
+    <div id="blurry-img"></div>
+</div>
+<main>
+    <h1>Fotogaléria</h1>
+    <a href="index.html" class="back-link">
+        <img src="img/back.svg" alt="back">
+        Architektúra</a>
+    <div class="categories-grid" id="imageGalleryContent">
+        <div class="card without-desc openGallery">
+            <img src="img/architektura.jpeg" alt="priroda">
+        </div>
+        <div class="card without-desc openGallery">
+            <img src="img/pexels-photo-261146.jpeg" alt="priroda">
+        </div>
+        <div class="card without-desc openGallery">
+            <img src="img/pexels-photo-323780.jpeg" alt="priroda">
+        </div>
+        <div class="card without-desc openGallery">
+            <img src="img/pexels-photo-24464.jpg" alt="priroda">
+        </div>
+        <div class="card without-desc openGallery">
+            <img src="img/pexels-photo-221506.jpeg" alt="priroda">
+        </div>
+        <div class="card without-desc openGallery">
+            <img src="img/pexels-photo-186077.jpeg" alt="priroda">
+        </div>
+        <div class="add-card" id="openAddCategoryModal">
+            <img src="img/add_photo.svg" alt="add_photo">
+            <p>Pridať fotky</p>
+        </div>
+    </div>
+    <p class="design-by">webdesign by bart.sk</p>
+</main>
+
+<div class="modal" id="imageGallery">
+    <button class="modal-close-button">
+        <img src="img/close.svg" alt="close">
+        ZAVRIEŤ
+    </button>
+    <div class="gallery">
+        <div id="back">
+            <img src="img/prev_icon.svg" alt="back">
+        </div>
+        <img class="image" src="#" alt="image" id="galleryImg">
+        <div id="next">
+            <img src="img/next_icon.svg" alt="next">
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="addCategory">
+    <button class="modal-close-button">
+        <img src="img/close.svg" alt="close">
+        ZAVRIEŤ
+    </button>
+    <div class="content">
+        <h3>Pridať fotky</h3>
+        <div class="drag-n-drop">
+            <img src="img/add_photo.svg" alt="add photo">
+            <p>SEM PRESUNTE FOTKY</p>
+            <p>alebo</p>
+            <button class="pick-files">Vyberte súbory</button>
+        </div>
+        <button class="add-button"><img src="img/add_white.svg" alt="add">PRIDAŤ</button>
+    </div>
+</div>
+<div class="overlay"></div>
+
+<script src="js/main.js"></script>
+</body>
+</html>

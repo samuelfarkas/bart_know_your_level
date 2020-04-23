@@ -1,0 +1,17 @@
+{
+  "name": "level_1",
+  "version": "1.0.0",
+  "description": "Bart Level 1",
+  "main": "index.js",
+  "scripts": {
+    "build-sass": "gulp style",
+    "dev": "gulp watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Samuel Farkas",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-sass": "^4.0.2"
+  }
+}
