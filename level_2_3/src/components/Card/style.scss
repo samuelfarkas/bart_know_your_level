@@ -1,0 +1,101 @@
+@import '../../helpers';
+
+.basic-card {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  background-clip: border-box;
+  text-decoration: none;
+
+  width: $width;
+  height: 13.750em;
+  border: none;
+  border-radius: $border-radius;
+  box-shadow: 0 2px 6px 1px rgba(0,0,0,0.2);
+}
+
+.card {
+  @extend .basic-card;
+
+  transition: transform 0.2s;
+
+  img {
+    width: 100%;
+    object-fit: cover;
+    border-radius: $border-radius $border-radius 0 0;
+    height: 75%;
+    transition: height 0.3s;
+  }
+
+  .text {
+    margin: auto;
+    width: 51%;
+
+    p {
+      text-transform: uppercase;
+      font-size: 0.9em;
+      color: $text-color;
+      font-weight: $weight-medium;
+      text-align: center;
+      margin: 0.3em;
+    }
+
+    .subtext {
+      text-transform: unset;
+      display: none;
+      color: $light-text;
+      font-weight: $weight-regular;
+    }
+  }
+
+  // hover scaling
+  &:hover {
+    transform: translateY(-1em);
+    cursor: pointer;
+
+    img {
+      height: 65%;
+    }
+
+    .subtext {
+      display: block;
+    }
+  }
+
+  &.without-desc {
+    img {
+      height: 100%;
+    }
+  }
+
+}
+
+.add-card {
+  @extend .basic-card;
+  @include grey-border(border, 3px, 0.7);
+  box-shadow: none;
+
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: border-color 0.3s;
+
+  img {
+    margin-top: 1em;
+  }
+
+  p {
+    font-size: 1em;
+    font-weight: $weight-bold;
+    text-transform: uppercase;
+    color: $light-text;
+    margin-top: 0.8em;
+  }
+
+  &:hover {
+    cursor: pointer;
+    border-color: $text-color;
+  }
+}

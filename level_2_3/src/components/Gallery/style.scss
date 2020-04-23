@@ -1,0 +1,22 @@
+.gallery {
+  display: flex;
+  align-items: center;
+
+  div {
+    position: relative;
+    cursor: pointer;
+  }
+
+  div:first-of-type {
+    left: -15px;
+  }
+
+  div:last-of-type {
+    left: 15px;
+  }
+
+  .image {
+    width: 39em;
+    height: 25em;
+  }
+}

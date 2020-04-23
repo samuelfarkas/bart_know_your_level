@@ -1,0 +1,35 @@
+@import '../../helpers';
+
+.add-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: $weight-medium;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  margin: 0;
+  background: #42c78d;
+  color: white;
+  padding: 0.8em 1.6em;
+  border-radius: $border-radius;
+  font-size: 0.9em;
+  transition: background-color 0.2s;
+
+  img {
+    width: 0.7em;
+    margin-right: 5px;
+  }
+
+  &[disabled] {
+    background: $light-text;
+    cursor: default;
+    &:hover {
+      background-color: $light-text;
+    }
+  }
+
+  &:hover {
+    background-color: #d5566b;
+  }
+}

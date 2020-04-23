@@ -1,0 +1,22 @@
+@import '../../helpers';
+
+.add-category {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1em;
+  @include grey-border(border-bottom, 2px, 1);
+
+  input {
+    padding: 0.3em 0;
+    border: none;
+    outline: none;
+    width: 80%;
+    font-size: 0.9em;
+
+    &::placeholder {
+      font-weight: $weight-medium;
+      color: $light-text;
+    }
+  }
+}

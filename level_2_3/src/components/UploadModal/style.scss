@@ -1,0 +1,45 @@
+@import '../../helpers';
+
+.drag-n-drop {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 2em 3.6em;
+  border: 0.2em dashed rgb(238, 238, 238);
+  border-radius: 0.3em;
+
+  & ~ .add-button {
+    margin: 1em 0;
+    float: right;
+  }
+
+  p {
+    color: $light-text;
+    padding: 0;
+    margin: 0;
+
+    &:first-of-type {
+      margin: 0.8em;
+      font-weight: $weight-bold;
+    }
+
+    &:nth-of-type(2) {
+      margin-bottom: 0.6em;
+      font-weight: $weight-regular;
+    }
+  }
+
+  .pick-files {
+    background: transparent;
+    border: 0.15em solid $light-text;
+    padding: 0.6em 1.8em;
+    border-radius: 0.3em;
+    color: $light-text;
+    text-transform: uppercase;
+    font-weight: $weight-medium;
+    font-size: 0.9em;
+    cursor: pointer;
+  }
+
+}

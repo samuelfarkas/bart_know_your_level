@@ -1,11 +1,7 @@
 import React from 'react';
 import './style.scss';
 
-interface Props {
-    children: JSX.Element[]
-}
-
-const Grid: React.FC<Props> = ({children}) => {
+const Grid: React.FC = ({children}) => {
     return (
         <div className="grid">
             {children}
