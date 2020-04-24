@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import Grid from "../Grid";
 import AddCard from "../Card/add_card";
 import AddCategoryModal from "../AddCategoryModal";
-import {createGallery, getGalleries, getImage} from "../../config/http";
+import {createGallery, Gallery, getGalleries, getImage} from "../../config/http";
 import Card from "../Card";
 import {useHistory} from "react-router";
 
@@ -13,7 +13,7 @@ interface Props {
 const Categories: React.FC<Props> = ({setBgImage}) => {
     const history = useHistory();
 
-    const [galleries, setGalleries] = useState<any[]>([]);
+    const [galleries, setGalleries] = useState<Gallery[]>([]);
     const [showModal, setShowModal] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(false);
 
@@ -23,6 +23,7 @@ const Categories: React.FC<Props> = ({setBgImage}) => {
             const data = await getGalleries();
             setGalleries(data.galleries);
         })()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
 

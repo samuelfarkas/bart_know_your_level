@@ -2,6 +2,7 @@
 
 .drag-n-drop {
   display: flex;
+  outline: none;
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -12,6 +13,10 @@
   & ~ .add-button {
     margin: 1em 0;
     float: right;
+  }
+
+  &.active {
+    border-color: #42c78d;
   }
 
   p {
@@ -42,4 +47,20 @@
     cursor: pointer;
   }
 
+  input {
+    display: none;
+  }
+}
+
+.image-row {
+  display: flex;
+  margin-top: 1em;
+  overflow-x: auto;
+  padding-bottom: 1em;
+  img {
+    width: 3em;
+    height: 3em;
+    border-radius: 0.5em;
+    margin: 0 .2em;
+  }
 }

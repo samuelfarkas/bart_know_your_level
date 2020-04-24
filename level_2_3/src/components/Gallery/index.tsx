@@ -5,10 +5,10 @@ import nextIcon from '../../assets/icons/next_icon.svg';
 import Modal from "../Modal";
 
 import './style.scss';
-import {getImage} from "../../config/http";
+import {getImage, Image} from "../../config/http";
 
 interface Props {
-    images: any[];
+    images: Image[];
     index: number;
     onClose: () => void;
 }
@@ -35,7 +35,7 @@ const Gallery: React.FC<Props> = ({images, index, onClose}) => {
                     <div onClick={() => changeImage(false)}>
                         <img src={prevIcon} alt="prev icon"/>
                     </div>
-                    <img className="image" src={getPath()} alt="image" onLoadStart={() => console.log('loading')}/>
+                    <img className="image" src={getPath()} alt="current" onLoadStart={() => console.log('loading')}/>
                     <div onClick={() => changeImage()}>
                         <img src={nextIcon} alt="next_icon"/>
                     </div>

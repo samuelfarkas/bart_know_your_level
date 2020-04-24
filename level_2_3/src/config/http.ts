@@ -5,17 +5,28 @@ const Endpoints = {
     gallery: `${REST_URL}/gallery`
 };
 
-async function getGalleries(): Promise<{ galleries: any[] }> {
+export interface Image {
+    fullpath: string;
+    name: string;
+}
+
+export interface Gallery {
+    path: string;
+    name: string;
+    image?: Image
+}
+
+async function getGalleries(): Promise<{ galleries: Gallery[] }> {
     const response = await fetch(Endpoints.gallery);
     return response.json();
 }
 
-async function getGallery(id: string): Promise<{images: string[]}> {
+async function getGallery(id: string): Promise<{ images: Image[] }> {
     const response = await fetch(`${Endpoints.gallery}/${id}`);
     return response.json();
 }
 
-async function createGallery(name: string) {
+async function createGallery(name: string): Promise<Gallery> {
     const response = await fetch(Endpoints.gallery, {
         method: 'POST',
         headers: {
@@ -28,6 +39,24 @@ async function createGallery(name: string) {
     return response.json();
 }
 
-const getImage = (fullPath: string, w = 100, h = 0) => `${Endpoints.images}/${w}x${h}/${fullPath}`;
+const getImage = (fullPath: string, w = 100, h = 0): string => `${Endpoints.images}/${w}x${h}/${fullPath}`;
 
-export {getGalleries, getGallery, getImage, createGallery};
+
+const uploadImages = async (images: File[], galleryPath: string): Promise<{uploaded: Image[]} | null> => {
+    const formData = new FormData();
+    images.forEach((file) => {
+        formData.append(file.name, file)
+    });
+
+    try {
+        const response = await fetch(`${Endpoints.gallery}/${galleryPath}`, {
+            method: 'POST',
+            body: formData
+        });
+        return await response.json();
+    } catch {
+        return null;
+    }
+};
+
+export {getGalleries, getGallery, getImage, createGallery, uploadImages};

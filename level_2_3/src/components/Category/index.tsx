@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import Grid from "../Grid";
 import {Link, useParams} from 'react-router-dom';
-import {getGallery, getImage} from "../../config/http";
+import {getGallery, getImage, Image, uploadImages} from "../../config/http";
 import Card from "../Card";
 import AddCard from "../Card/add_card";
 import backIcon from '../../assets/icons/back.svg';
@@ -11,7 +11,7 @@ import UploadModal from "../UploadModal";
 
 const Category = () => {
     let {category} = useParams();
-    const [images, setImages] = useState<any>([]);
+    const [images, setImages] = useState<Image[]>([]);
     const [pickedImage, setPickedImage] = useState<number>(-1);
     const [showUpload, setShowUpload] = useState<boolean>(false);
 
@@ -22,6 +22,7 @@ const Category = () => {
                 setImages(data.images);
             })()
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const toggleUpload = () => {
@@ -36,10 +37,21 @@ const Category = () => {
         setPickedImage(-1);
     };
 
-    let imagesToRender = [];
+
+    const onUploadHandler = async (images: File[]) => {
+        if(category && images && images.length > 0) {
+            const response = await uploadImages(images, category);
+            if(response) {
+                setImages((prevState) => [...prevState, ...response.uploaded]);
+            }
+            toggleUpload();
+        }
+    };
+
+    let imagesToRender: JSX.Element[] = [];
 
     if (images.length > 0) {
-        imagesToRender = images.map((image: any, i: number) => {
+        imagesToRender = images.map((image: Image, i: number) => {
             const img = image ? getImage(image.fullpath, 600) : '';
             return <div key={`image_${i}`} onClick={() => openGallery(i)}>
                 <Card name={image.name} image={img} withoutDesc/>
@@ -57,7 +69,7 @@ const Category = () => {
                 <AddCard photo onClick={toggleUpload}/>
             </Grid>
             {pickedImage > -1 ? <Gallery images={images} index={pickedImage} onClose={closeGallery}/> : null}
-            {showUpload ? <UploadModal onClose={toggleUpload}/> : null}
+            {showUpload ? <UploadModal onConfirm={onUploadHandler} onClose={toggleUpload}/> : null}
         </>
     );
 };
