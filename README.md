@@ -1,6 +1,4 @@
-![Logo](http://www.programator.sk/img/assets/logo_2.svg)
-
-Solved front-end challenges.
+# Solved front-end challenges from bart.sk
 
 ## [Challenges](http://www.programator.sk/spoznaj-svoju-uroven)
 ### Level 1
