@@ -14,6 +14,7 @@ const Category = () => {
     const [images, setImages] = useState<Image[]>([]);
     const [pickedImage, setPickedImage] = useState<number>(-1);
     const [showUpload, setShowUpload] = useState<boolean>(false);
+    const [loading, setLoading] = useState<boolean>(false);
 
     useEffect(() => {
         if (category) {
@@ -39,11 +40,13 @@ const Category = () => {
 
 
     const onUploadHandler = async (images: File[]) => {
-        if(category && images && images.length > 0) {
+        if (category && images && images.length > 0) {
+            setLoading(true);
             const response = await uploadImages(images, category);
-            if(response) {
+            if (response) {
                 setImages((prevState) => [...prevState, ...response.uploaded]);
             }
+            setLoading(false);
             toggleUpload();
         }
     };
@@ -69,7 +72,7 @@ const Category = () => {
                 <AddCard photo onClick={toggleUpload}/>
             </Grid>
             {pickedImage > -1 ? <Gallery images={images} index={pickedImage} onClose={closeGallery}/> : null}
-            {showUpload ? <UploadModal onConfirm={onUploadHandler} onClose={toggleUpload}/> : null}
+            {showUpload ? <UploadModal onConfirm={onUploadHandler} onClose={toggleUpload} loading={loading}/> : null}
         </>
     );
 };

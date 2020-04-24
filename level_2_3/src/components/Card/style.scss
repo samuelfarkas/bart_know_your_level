@@ -19,11 +19,16 @@
 
   transition: transform 0.2s;
 
+  span {
+    width: 100%;
+    height: 75%;
+  }
+
   img {
     width: 100%;
     object-fit: cover;
     border-radius: $border-radius $border-radius 0 0;
-    height: 75%;
+    height: 100%;
     transition: height 0.3s;
   }
 
@@ -53,7 +58,7 @@
     transform: translateY(-1em);
     cursor: pointer;
 
-    & > span, img {
+    & > span {
       height: 65%;
     }
 
@@ -63,7 +68,7 @@
   }
 
   &.without-desc {
-    & > span, img {
+    & > span {
       height: 100%;
     }
   }

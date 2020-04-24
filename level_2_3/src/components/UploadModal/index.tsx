@@ -9,9 +9,10 @@ import {useDropzone} from "react-dropzone";
 interface Props {
     onConfirm: (images: File[]) => void;
     onClose: () => void;
+    loading: boolean
 }
 
-const UploadModal: React.FC<Props> = ({onClose, onConfirm}) => {
+const UploadModal: React.FC<Props> = ({onClose, onConfirm, loading}) => {
     const [uploadedImages, setUploadedImages] = useState<File[]>([]);
 
     // DnD
@@ -20,7 +21,7 @@ const UploadModal: React.FC<Props> = ({onClose, onConfirm}) => {
             setUploadedImages(prevImgs => [...prevImgs, ...acceptedFiles])
         }
     }, []);
-    const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop});
+    const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop, disabled: loading});
 
     return (
         <Modal title="PRIDAŤ FOTKY" onClose={onClose}>
@@ -40,7 +41,8 @@ const UploadModal: React.FC<Props> = ({onClose, onConfirm}) => {
                     return <img key={`uploaded_img_${i}`} src={URL.createObjectURL(imgSrc)} alt=""/>
                 })}
             </div>
-            <AddButton onClick={() => onConfirm(uploadedImages)}/>
+            {loading ? 'Nahrávam...' : null}
+            <AddButton onClick={() => onConfirm(uploadedImages)} disabled={loading}/>
         </Modal>
     );
 };
