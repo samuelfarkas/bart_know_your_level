@@ -13,9 +13,9 @@
 
 
   @include for-size('phone-only') {
-    font-size: 6px;
-    left: 47%;
-    top: 50%;
+    font-size: 16px;
+    text-align: center;
+    width: 100%;
   }
 
 
@@ -37,6 +37,12 @@
       width: 1.8em;
       margin-right: 0.5em;
     }
+
+    @include for-size('phone-only') {
+      margin-right: 0.4em;
+      font-size: 1.2em;
+    }
+
   }
 
   .content {

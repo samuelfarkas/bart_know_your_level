@@ -16,7 +16,7 @@ interface Props {
 const Gallery: React.FC<Props> = ({images, index, onClose}) => {
     const [currentImageIndex, setCurrentImageIndex] = useState<number>(index);
     if (images && images.length > 0) {
-        const getPath = () => getImage(images[currentImageIndex].fullpath, 600);
+        const getPath = () => getImage(images[currentImageIndex].fullpath, 1000);
 
         const changeImage = (next = true) => {
             setCurrentImageIndex(prevIndex => {
@@ -35,7 +35,15 @@ const Gallery: React.FC<Props> = ({images, index, onClose}) => {
                     <div onClick={() => changeImage(false)}>
                         <img src={prevIcon} alt="prev icon"/>
                     </div>
-                    <img className="image" src={getPath()} alt="current" onLoadStart={() => console.log('loading')}/>
+                    <img className="image" src={getPath()} alt="current"/>
+                    <div onClick={() => changeImage()}>
+                        <img src={nextIcon} alt="next_icon"/>
+                    </div>
+                </div>
+                <div className="phone-arrows">
+                    <div onClick={() => changeImage(false)}>
+                        <img src={prevIcon} alt="prev icon"/>
+                    </div>
                     <div onClick={() => changeImage()}>
                         <img src={nextIcon} alt="next_icon"/>
                     </div>

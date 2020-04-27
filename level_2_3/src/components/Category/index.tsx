@@ -55,7 +55,7 @@ const Category = () => {
 
     if (images.length > 0) {
         imagesToRender = images.map((image: Image, i: number) => {
-            const img = image ? getImage(image.fullpath, 600) : '';
+            const img = image ? getImage(image.fullpath, 1000) : '';
             return <div key={`image_${i}`} onClick={() => openGallery(i)}>
                 <Card name={image.name} image={img} withoutDesc/>
             </div>

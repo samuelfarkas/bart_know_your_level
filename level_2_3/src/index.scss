@@ -10,9 +10,16 @@ html, body {
   font-size: 13px;
   letter-spacing: 1px;
 
-  @include for-size('tablet-portrait-up') {
-    font-size: 15px;
+  @include for-size('phone-only') {
+    font-size: 14px;
   }
+  @include for-size('tablet-portrait-up') {
+    font-size: 16px;
+  }
+  @include for-size('tablet-landscape-up') {
+    font-size: 14px;
+  }
+
   @include for-size('big-desktop-up') {
     font-size: 20px;
   }

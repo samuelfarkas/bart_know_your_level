@@ -5,7 +5,14 @@
   justify-content: space-between;
   align-items: center;
   padding-bottom: 1em;
-  @include grey-border(border-bottom, 2px, 1);
+
+  @include for-size('phone-only') {
+    flex-direction: column;
+  }
+
+  @include for-size('tablet-portrait-up') {
+    @include grey-border(border-bottom, 2px, 1);
+  }
 
   input {
     padding: 0.3em 0;
@@ -17,6 +24,12 @@
     &::placeholder {
       font-weight: $weight-medium;
       color: $light-text;
+    }
+
+
+    @include for-size('phone-only') {
+      margin-bottom: 3em;
+      @include grey-border(border-bottom, 2px, 1);
     }
   }
 }

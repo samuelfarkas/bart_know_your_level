@@ -14,7 +14,7 @@ const AddCategoryModal: React.FC<Props> = ({onClose, createCategory, disabled}) 
     const [value, setValue] = useState<string>('');
 
     return (
-        <Modal onClose={onClose} title="Pridat fotku">
+        <Modal onClose={onClose} title="Pridat kategóriu">
             <div className="add-category">
                 <input type="text" placeholder="ZADAJTE NÁZOV KATEGÓRIE" onChange={({target}) => setValue(target.value)}/>
                 <AddButton onClick={() => createCategory(value)} disabled={disabled}/>
