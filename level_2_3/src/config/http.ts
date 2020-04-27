@@ -1,4 +1,6 @@
-const REST_URL = 'http://api.programator.sk';
+const production = process.env.NODE_ENV === 'production';
+
+const REST_URL = production ? 'http://api.programator.sk' : 'http://api.programator.sk';
 
 const Endpoints = {
     images: `${REST_URL}/images`,
