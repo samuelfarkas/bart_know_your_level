@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import prevIcon from '../../assets/icons/prev_icon.svg';
 import nextIcon from '../../assets/icons/next_icon.svg';
 
@@ -14,20 +14,40 @@ interface Props {
 }
 
 const Gallery: React.FC<Props> = ({images, index, onClose}) => {
+    const navigateOnArrows = (e: KeyboardEvent) => {
+        if(images && images.length > 0) {
+            if(e.code === 'ArrowLeft') {
+                changeImage(false);
+            } else if (e.code === 'ArrowRight') {
+                changeImage();
+            }
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener('keydown', navigateOnArrows);
+        return function cleanup() {
+            document.removeEventListener('keydown', navigateOnArrows);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+
+
     const [currentImageIndex, setCurrentImageIndex] = useState<number>(index);
+
+    const changeImage = (next = true) => {
+        setCurrentImageIndex(prevIndex => {
+            const length = images.length;
+            if(next) {
+                return prevIndex + 1 > length - 1 ? 0 : prevIndex + 1;
+            } else {
+                return prevIndex - 1 < 0 ? length - 1 : prevIndex - 1;
+            }
+        });
+    };
     if (images && images.length > 0) {
         const getPath = () => getImage(images[currentImageIndex].fullpath, 1000);
-
-        const changeImage = (next = true) => {
-            setCurrentImageIndex(prevIndex => {
-                const length = images.length;
-                if(next) {
-                    return prevIndex + 1 > length - 1 ? 0 : prevIndex + 1;
-                } else {
-                    return prevIndex - 1 < 0 ? length - 1 : prevIndex - 1;
-                }
-            });
-        };
 
         return (
             <Modal onClose={onClose} withoutContainer>

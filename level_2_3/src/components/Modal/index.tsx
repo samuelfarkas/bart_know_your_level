@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import close from '../../assets/icons/close.svg'
 
 import './style.scss'
@@ -10,6 +10,20 @@ interface Props {
 }
 
 const Modal: React.FC<Props> = ({onClose, children, title, withoutContainer}) => {
+    const closeOnESC = (e: KeyboardEvent) => {
+        if(e.code === 'Escape') {
+            onClose();
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener('keydown', closeOnESC);
+        return function cleanup() {
+            document.removeEventListener('keydown', closeOnESC);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
     return (
         <>
             <div className="modal">
@@ -22,7 +36,7 @@ const Modal: React.FC<Props> = ({onClose, children, title, withoutContainer}) =>
                     {children}
                 </div>}
             </div>
-            <div className="overlay"/>
+            <div className="overlay" onClick={onClose}/>
         </>
     );
 };
